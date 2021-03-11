@@ -10,7 +10,6 @@ Motors KEYWORD1
 # Keyword for class functions
 #######################################
 
-Motors              KEYWORD2
 set_speed           KEYWORD2
 stop                KEYWORD2
 neutral             KEYWORD2
