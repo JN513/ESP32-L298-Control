@@ -1,30 +1,34 @@
-#######################################
-# Datatypes
-#######################################
+# Arduino IDE Keywords for Syntax Coloring
 
 #######################################
-# Methods and Functions
+# Keyword for class Motors
 #######################################
 
-Motors              KEYWORD1
-set_speed           KEYWORD1
-stop                KEYWORD1
-neutral             KEYWORD1
-neutral_a           KEYWORD1
-neutral_b           KEYWORD1
-stop_a              KEYWORD1
-stop_b              KEYWORD1
-front_ma            KEYWORD1
-behind_ma           KEYWORD1
-front_mb            KEYWORD1
-behind_mb           KEYWORD1
-front               KEYWORD1
-behind              KEYWORD1
-maximize_speed      KEYWORD1
-minimize_speed      KEYWORD1
-get_speed           KEYWORD1
-get_direction_a     KEYWORD1
-get_direction_b     KEYWORD1
+Motors KEYWORD1
+
+#######################################
+# Keyword for class functions
+#######################################
+
+Motors              KEYWORD2
+set_speed           KEYWORD2
+stop                KEYWORD2
+neutral             KEYWORD2
+neutral_a           KEYWORD2
+neutral_b           KEYWORD2
+stop_a              KEYWORD2
+stop_b              KEYWORD2
+front_ma            KEYWORD2
+behind_ma           KEYWORD2
+front_mb            KEYWORD2
+behind_mb           KEYWORD2
+front               KEYWORD2
+behind              KEYWORD2
+maximize_speed      KEYWORD2
+minimize_speed      KEYWORD2
+get_speed           KEYWORD2
+get_direction_a     KEYWORD2
+get_direction_b     KEYWORD2
 
 #######################################
 # Constants
