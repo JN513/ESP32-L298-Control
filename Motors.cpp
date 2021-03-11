@@ -67,80 +67,80 @@ void Motors ::  set_channels(int _ch0, int _ch1, int _ch2, int _ch3){
 }
 
 void Motors :: stop(){
-    ledcWrite(1, 4094);
-    ledcWrite(2, 4094);
-    ledcWrite(2, 4094);
-    ledcWrite(3, 4094);
+    ledcWrite(this->ch0, 4094);
+    ledcWrite(this->ch1, 4094);
+    ledcWrite(this->ch2, 4094);
+    ledcWrite(this->ch3, 4094);
 }
 
 void Motors :: neutral(){
-    ledcWrite(1, 0);
-    ledcWrite(2, 0);
-    ledcWrite(2, 0);
-    ledcWrite(3, 0);
+    ledcWrite(this->ch0, 0);
+    ledcWrite(this->ch1, 0);
+    ledcWrite(this->ch2, 0);
+    ledcWrite(this->ch3, 0);
 }
 
 void Motors :: neutral_ma(){
-    ledcWrite(0, 0);
-    ledcWrite(1, 0);
+    ledcWrite(this->ch0, 0);
+    ledcWrite(this->ch1, 0);
 }
 
 void Motors :: neutral_mb(){
-    ledcWrite(2, 0);
-    ledcWrite(3, 0);
+    ledcWrite(this->ch2, 0);
+    ledcWrite(this->ch3, 0);
 }
 
 void Motors :: stop_ma(){
-    ledcWrite(0, 4094);
-    ledcWrite(1, 4094);
+    ledcWrite(this->ch0, 4094);
+    ledcWrite(this->ch1, 4094);
 }
 
 void Motors :: stop_mb(){
-    ledcWrite(2, 4094);
-    ledcWrite(3, 4094);
+    ledcWrite(this->ch2, 4094);
+    ledcWrite(this->ch3, 4094);
 }
 
 void Motors :: front_ma(int _speed){
     this->direction_a = 1;
     if(_speed != 0){
-        ledcWrite(0, 0);
-        ledcWrite(1 , _speed);
+        ledcWrite(this->ch0, 0);
+        ledcWrite(this->ch1 , _speed);
     }else{
-        ledcWrite(0, 0);
-        ledcWrite(1 , this->speed);       
+        ledcWrite(this->ch0, 0);
+        ledcWrite(this->ch1 , this->speed);       
     }
 }
 
 void Motors :: behind_ma(int _speed){
     this->direction_a = 0;
     if(_speed != 0){
-        ledcWrite(1, 0);
-        ledcWrite(0 , _speed);
+        ledcWrite(this->ch1, 0);
+        ledcWrite(this->ch0, _speed);
     }else{
-        ledcWrite(1, 0);
-        ledcWrite(0 , this->speed);
+        ledcWrite(this->ch1, 0);
+        ledcWrite(this->ch0 , this->speed);
     }
 }
 
 void Motors :: front_mb(int _speed){
     this->direction_b = 1;
     if(_speed != 0){
-        ledcWrite(2, 0);
-        ledcWrite(3 , _speed);
+        ledcWrite(this->ch2, 0);
+        ledcWrite(this->ch3, _speed);
     }else{
-        ledcWrite(2, 0);
-        ledcWrite(3 , this->speed);       
+        ledcWrite(this->ch2, 0);
+        ledcWrite(this->ch3 , this->speed);
     }
 }
 
 void Motors :: behind_mb(int _speed){
     this->direction_b = 0;
     if(_speed != 0){
-        ledcWrite(3, 0);
-        ledcWrite(2 , _speed);
+        ledcWrite(this->ch3, 0);
+        ledcWrite(this->ch2, _speed);
     }else{
-        ledcWrite(3, 0);
-        ledcWrite(2 , this->speed);
+        ledcWrite(this->ch3, 0);
+        ledcWrite(this->ch2 , this->speed);
     }
 }
 
@@ -148,15 +148,15 @@ void Motors :: front(int _speed){
     this->direction_a = 1;
     this->direction_b = 1;
         if(_speed != 0){
-        ledcWrite(0, 0);
-        ledcWrite(1 , _speed);
-        ledcWrite(2, 0);
-        ledcWrite(3 , _speed);
+        ledcWrite(this->ch0, 0);
+        ledcWrite(this->ch1 , _speed);
+        ledcWrite(this->ch2, 0);
+        ledcWrite(this->ch3 , _speed);
     }else{
-        ledcWrite(0, 0);
-        ledcWrite(1 , this->speed); 
-        ledcWrite(2, 0);
-        ledcWrite(3 , this->speed); 
+        ledcWrite(this->ch0, 0);
+        ledcWrite(this->ch1 , this->speed); 
+        ledcWrite(this->ch2, 0);
+        ledcWrite(this->ch3 , this->speed); 
     }
 }
 
@@ -164,15 +164,15 @@ void Motors :: behind(int _speed){
     this->direction_a = 0;
     this->direction_b = 0;
     if(_speed != 0){
-        ledcWrite(1, 0);
-        ledcWrite(0 , _speed);
-        ledcWrite(3, 0);
-        ledcWrite(2 , _speed);
+        ledcWrite(this->ch1, 0);
+        ledcWrite(this->ch0 , _speed);
+        ledcWrite(this->ch3, 0);
+        ledcWrite(this->ch2 , _speed);
     }else{
-        ledcWrite(1, 0);
-        ledcWrite(0 , speed);
-        ledcWrite(3, 0);
-        ledcWrite(2 , speed);
+        ledcWrite(this->ch1, 0);
+        ledcWrite(this->ch0 , speed);
+        ledcWrite(this->ch3, 0);
+        ledcWrite(this->ch2 , speed);
     }
 }
 
