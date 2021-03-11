@@ -10,10 +10,10 @@ class Motors{
         void set_speed(int _speed);
         void stop();
         void neutral();
-        void neutral_a();
-        void neutral_b();
-        void stop_a();
-        void stop_b();
+        void neutral_ma();
+        void neutral_mb();
+        void stop_ma();
+        void stop_mb();
         void front_ma(int _speed = 0);
         void behind_ma(int _speed = 0);
         void front_mb(int _speed = 0);
@@ -23,8 +23,8 @@ class Motors{
         int maximize_speed();
         int minimize_speed();
         int get_speed();
-        int get_direction_a();
-        int get_direction_b();
+        int get_direction_ma();
+        int get_direction_mb();
 
     private:
         int m1a, m1b, m2a, m2b;
