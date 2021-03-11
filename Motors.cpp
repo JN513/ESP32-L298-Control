@@ -1,6 +1,9 @@
 #include "Motors.h"
 
 Motors :: Motors( int M1a, int M1b, int M2a, int M2b, int _speed ){
+    int freq = 1000;
+    int resolution = 12;
+
     this->m1a = M1a;
     this->m1b = M1b;
     this->m2a = M2a;
@@ -11,6 +14,16 @@ Motors :: Motors( int M1a, int M1b, int M2a, int M2b, int _speed ){
     pinMode( M1b, OUTPUT );
     pinMode( M2a, OUTPUT );
     pinMode( M2b, OUTPUT );
+
+    ledcSetup( 0, freq, resolution );
+    ledcSetup( 1, freq, resolution );
+    ledcSetup( 2, freq, resolution );
+    ledcSetup( 3, freq, resolution );
+
+    ledcAttachPin( M1a, 0 );
+    ledcAttachPin( M1b, 1 );
+    ledcAttachPin( M2a, 2 );
+    ledcAttachPin( M2b, 3 );
 }
 
 void Motors :: set_speed(int _speed){
@@ -22,112 +35,112 @@ void Motors :: set_speed(int _speed){
 }
 
 void Motors :: stop(){
-    digitalWrite( this->m1a, HIGH );
-    digitalWrite( this->m1b, HIGH );
-    digitalWrite( this->m2a, HIGH );
-    digitalWrite( this->m2b, HIGH );
+    ledcWrite(1, 4094);
+    ledcWrite(2, 4094);
+    ledcWrite(2, 4094);
+    ledcWrite(3, 4094);
 }
 
 void Motors :: neutral(){
-    digitalWrite( this->m1a, LOW );
-    digitalWrite( this->m1b, LOW );
-    digitalWrite( this->m2a, LOW );
-    digitalWrite( this->m2b, LOW );
+    ledcWrite(1, 0);
+    ledcWrite(2, 0);
+    ledcWrite(2, 0);
+    ledcWrite(3, 0);
 }
 
-void Motors :: neutral_a(){
-    digitalWrite( this->m1a, LOW );
-    digitalWrite( this->m1b, LOW );
+void Motors :: neutral_ma(){
+    ledcWrite(0, 0);
+    ledcWrite(1, 0);
 }
 
-void Motors :: neutral_b(){
-    digitalWrite( this->m2a, LOW );
-    digitalWrite( this->m2b, LOW );
+void Motors :: neutral_mb(){
+    ledcWrite(2, 0);
+    ledcWrite(3, 0);
 }
 
-void Motors :: stop_a(){
-    digitalWrite( this->m1a, HIGH );
-    digitalWrite( this->m1b, HIGH );
+void Motors :: stop_ma(){
+    ledcWrite(0, 4094);
+    ledcWrite(1, 4094);
 }
 
-void Motors :: stop_b(){
-    digitalWrite( this->m2a, HIGH );
-    digitalWrite( this->m2b, HIGH );
+void Motors :: stop_mb(){
+    ledcWrite(2, 4094);
+    ledcWrite(3, 4094);
 }
 
 void Motors :: front_ma(int _speed){
     this->direction_a = 1;
-    if(_speed == 0){
-        digitalWrite( this->m1a, LOW );
-        analogWrite( this->m1b, _speed );
+    if(_speed != 0){
+        ledcWrite(0, 0);
+        ledcWrite(1 , _speed);
     }else{
-        digitalWrite( this->m1a, LOW );
-        analogWrite( this->m1b, speed );
+        ledcWrite(0, 0);
+        ledcWrite(1 , this->speed);       
     }
 }
 
 void Motors :: behind_ma(int _speed){
     this->direction_a = 0;
-    if(_speed == 0){
-        analogWrite( this->m1a, _speed );
-        digitalWrite( this->m1b, LOW );
+    if(_speed != 0){
+        ledcWrite(1, 0);
+        ledcWrite(0 , _speed);
     }else{
-        analogWrite( this->m1a, speed );
-        digitalWrite( this->m1b, LOW );
+        ledcWrite(1, 0);
+        ledcWrite(0 , this->speed);
     }
 }
 
 void Motors :: front_mb(int _speed){
     this->direction_b = 1;
-    if(_speed == 0){
-        digitalWrite( this->m2a, LOW );
-        analogWrite( this->m2b, _speed );
+    if(_speed != 0){
+        ledcWrite(2, 0);
+        ledcWrite(3 , _speed);
     }else{
-        digitalWrite( this->m2a, LOW );
-        analogWrite( this->m2b, speed );        
+        ledcWrite(2, 0);
+        ledcWrite(3 , this->speed);       
     }
 }
 
 void Motors :: behind_mb(int _speed){
     this->direction_b = 0;
-    if(_speed == 0){
-        analogWrite( this->m2a, _speed );
-        digitalWrite( this->m2b, LOW );
+    if(_speed != 0){
+        ledcWrite(3, 0);
+        ledcWrite(2 , _speed);
     }else{
-        analogWrite( this->m2a, speed );
-        digitalWrite( this->m2b, LOW );
+        ledcWrite(3, 0);
+        ledcWrite(2 , this->speed);
     }
 }
 
 void Motors :: front(int _speed){
     this->direction_a = 1;
     this->direction_b = 1;
-        if(_speed == 0){
-        digitalWrite( this->m1a, LOW );
-        analogWrite( this->m1b, _speed );
-        digitalWrite( this->m2a, LOW );
-        analogWrite( this->m2b, _speed );
+        if(_speed != 0){
+        ledcWrite(0, 0);
+        ledcWrite(1 , _speed);
+        ledcWrite(2, 0);
+        ledcWrite(3 , _speed);
     }else{
-        digitalWrite( this->m1a, LOW );
-        analogWrite( this->m1b, speed );
-        digitalWrite( this->m2a, LOW );
-        analogWrite( this->m2b, speed );
+        ledcWrite(0, 0);
+        ledcWrite(1 , this->speed); 
+        ledcWrite(2, 0);
+        ledcWrite(3 , this->speed); 
     }
 }
 
 void Motors :: behind(int _speed){
     this->direction_a = 0;
     this->direction_b = 0;
-    if(_speed == 0){
-        analogWrite( this->m1a, _speed );
-        digitalWrite( this->m1b, LOW );
-        analogWrite( this->m2a, _speed );
-        digitalWrite( this->m2b, LOW );
+    if(_speed != 0){
+        ledcWrite(1, 0);
+        ledcWrite(0 , _speed);
+        ledcWrite(3, 0);
+        ledcWrite(2 , _speed);
     }else{
-        analogWrite( this->m1a, speed );
-        digitalWrite( this->m1b, LOW );
-        analogWrite( this->m2a, speed);
-        digitalWrite( this->m2b, LOW );
+        ledcWrite(1, 0);
+        ledcWrite(0 , speed);
+        ledcWrite(3, 0);
+        ledcWrite(2 , speed);
     }
 }
 
@@ -145,9 +158,9 @@ int Motors :: get_speed(){
     return this->speed;
 }
 
-int Motors :: get_direction_a(){
+int Motors :: get_direction_ma(){
     return this->direction_a;
 }
-int Motors :: get_direction_b(){
+int Motors :: get_direction_mb(){
     return this->direction_b;
 }
