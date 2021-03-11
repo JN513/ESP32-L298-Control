@@ -1,0 +1,32 @@
+#######################################
+# Datatypes
+#######################################
+
+#######################################
+# Methods and Functions
+#######################################
+
+Motors              KEYWORD1
+set_speed           KEYWORD1
+stop                KEYWORD1
+neutral             KEYWORD1
+neutral_a           KEYWORD1
+neutral_b           KEYWORD1
+stop_a              KEYWORD1
+stop_b              KEYWORD1
+front_ma            KEYWORD1
+behind_ma           KEYWORD1
+front_mb            KEYWORD1
+behind_mb           KEYWORD1
+front               KEYWORD1
+behind              KEYWORD1
+maximize_speed      KEYWORD1
+minimize_speed      KEYWORD1
+get_speed           KEYWORD1
+get_direction_a     KEYWORD1
+get_direction_b     KEYWORD1
+
+#######################################
+# Constants
+#######################################
+

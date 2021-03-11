@@ -1,0 +1,15 @@
+{
+  "name": "ESP32 L298 Control",
+  "keywords" : "esp32, ponte H, L298, L298x, Motor, H Bridge",
+  "description" : "Functions for controlling the L298 H Bridge in an easy way using ESP32",
+
+  "version": "0.1",
+  "frameworks": "arduino",
+  "platforms": "espressif32",
+
+  "repository":
+  {
+    "type":"git",
+    "url": "https://github.com/JN513/ESP32-L298-Control.git"
+  }
+}
