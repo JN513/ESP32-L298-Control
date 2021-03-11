@@ -1,9 +1,8 @@
 #include "Motors.h"
 
-Motors :: Motors( int M1a, int M1b, int M2a, int M2b, int _speed ){
-    int freq = 1000;
-    int resolution = 12;
-
+Motors :: Motors( int M1a, int M1b, int M2a, int M2b, int _speed, int _freq, int _resolution, int _ch0, int _ch1, int _ch2, int _ch3){
+    this->freq = _freq;
+    this->resolution = _resolution;
     this->m1a = M1a;
     this->m1b = M1b;
     this->m2a = M2a;
@@ -15,23 +14,56 @@ Motors :: Motors( int M1a, int M1b, int M2a, int M2b, int _speed ){
     pinMode( M2a, OUTPUT );
     pinMode( M2b, OUTPUT );
 
-    ledcSetup( 0, freq, resolution );
-    ledcSetup( 1, freq, resolution );
-    ledcSetup( 2, freq, resolution );
-    ledcSetup( 3, freq, resolution );
+    ledcSetup( _ch0, this->freq, this->resolution );
+    ledcSetup( _ch1, this->freq, this->resolution );
+    ledcSetup( _ch2, this->freq, this->resolution );
+    ledcSetup( _ch3, this->freq, this->resolution );
 
-    ledcAttachPin( M1a, 0 );
-    ledcAttachPin( M1b, 1 );
-    ledcAttachPin( M2a, 2 );
-    ledcAttachPin( M2b, 3 );
+    this->ch0 = _ch0;
+    this->ch1 = _ch1;
+    this->ch2 = _ch2;
+    this->ch3 = _ch3;
+
+    ledcAttachPin( this->m1a, _ch0 );
+    ledcAttachPin( this->m1b, _ch1 );
+    ledcAttachPin( this->m2a, _ch2 );
+    ledcAttachPin( this->m2b, _ch3 );
 }
 
-void Motors :: set_speed(int _speed){
+int Motors :: set_freq(int _freq){
+    this->freq = _freq;
+    return this->freq;
+}
+
+int Motors :: set_resolution(int _resolution){
+    this->resolution = _resolution;
+    return this->resolution;
+}
+
+int Motors :: set_speed(int _speed){
     if(_speed < 0){
         this->speed = _speed*-1;
     } else{
         this->speed = _speed;
     }
+    return this->speed;
+}
+
+void Motors ::  set_channels(int _ch0, int _ch1, int _ch2, int _ch3){
+    ledcSetup( _ch0, this->freq, this->resolution );
+    ledcSetup( _ch1, this->freq, this->resolution );
+    ledcSetup( _ch2, this->freq, this->resolution );
+    ledcSetup( _ch3, this->freq, this->resolution );
+
+    this->ch0 = _ch0;
+    this->ch1 = _ch1;
+    this->ch2 = _ch2;
+    this->ch3 = _ch3;
+
+    ledcAttachPin( this->m1a, _ch0 );
+    ledcAttachPin( this->m1b, _ch1 );
+    ledcAttachPin( this->m2a, _ch2 );
+    ledcAttachPin( this->m2b, _ch3 );
 }
 
 void Motors :: stop(){
